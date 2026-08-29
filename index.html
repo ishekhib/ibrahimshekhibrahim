@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ibrahim Shekhibrahim</title>
+<meta name="description" content="Portfolio of Ibrahim Shekhibrahim, Electrical Engineering and AI Systems student at Western University." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#161b20;
+  --text:#EDEFF2;
+  --muted:#98A1AA;
+  --faint:#6B747D;
+  --accent:#A6C6DC;
+  --stroke:rgba(255,255,255,.10);
+  --stroke-2:rgba(255,255,255,.18);
+  --glass:rgba(255,255,255,.045);
+  --glass-2:rgba(255,255,255,.08);
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(166,198,220,.25)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+/* background */
+#board{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% 0%,rgba(11,13,15,0) 35%,rgba(11,13,15,.78) 100%);
+}
+
+main{position:relative;z-index:2}
+.wrap{width:100%;max-width:1000px;margin:0 auto;padding:0 26px}
+.section{padding:110px 0}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin:0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:38px}
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  backdrop-filter:blur(20px) saturate(130%);
+  -webkit-backdrop-filter:blur(20px) saturate(130%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 22px 50px -32px #000;
+}
+
+/* nav */
+.nav{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;gap:2px;padding:6px 7px;border-radius:999px;
+  background:rgba(16,19,23,.55);border:1px solid var(--stroke);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 40px -26px #000;
+}
+.nav a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:8px 15px;border-radius:999px;white-space:nowrap;
+  transition:color .25s var(--ease),background .25s var(--ease);
+}
+.nav a:hover{color:var(--text);background:var(--glass-2)}
+
+/* hero */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:120px 26px 90px;position:relative;
+}
+.avatar{
+  width:130px;height:130px;border-radius:50%;padding:5px;margin-bottom:32px;
+  background:var(--glass);border:1px solid var(--stroke-2);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 60px -30px #000;
+}
+.avatar img,.avatar .ph{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.avatar .ph{
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#1a1f25,#0f1216);
+  font-family:var(--display);font-size:2rem;color:var(--faint);
+}
+.hero h1{font-size:clamp(2.6rem,8vw,5.4rem);line-height:.95;margin-bottom:20px}
+.hero .role{
+  font-family:var(--mono);font-size:clamp(10.5px,1.5vw,12.5px);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 9px;
+}
+.hero .school{color:var(--muted);font-size:14.5px;margin:0 0 38px}
+
+.actions{display:flex;gap:11px;flex-wrap:wrap;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);
+}
+.btn:hover{transform:translateY(-2px);background:var(--glass-2);border-color:var(--stroke-2)}
+.btn svg{width:15px;height:15px;opacity:.8}
+.btn--icon{padding:13px}
+.btn--icon svg{width:17px;height:17px}
+
+/* project cards — title only */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  min-height:130px;padding:30px 26px;border-radius:18px;text-align:center;
+  font-family:var(--display);font-size:1.12rem;font-weight:600;letter-spacing:-.015em;line-height:1.3;
+  transition:transform .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease);
+}
+.card::after{
+  content:"";position:absolute;left:18%;right:18%;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(166,198,220,.6),transparent);
+  opacity:0;transition:opacity .4s var(--ease);
+}
+.card:hover{transform:translateY(-4px);background:var(--glass-2);border-color:var(--stroke-2)}
+.card:hover::after{opacity:1}
+
+/* experience — title only */
+.rows{border-top:1px solid var(--stroke)}
+.row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+  padding:20px 6px;border-bottom:1px solid var(--stroke);
+  transition:background .3s var(--ease),padding-left .3s var(--ease);
+}
+.row:hover{background:rgba(255,255,255,.022);padding-left:14px}
+.row .role{font-family:var(--display);font-weight:600;font-size:1.02rem;letter-spacing:-.015em}
+.row .org{color:var(--muted);font-size:13.5px;margin-top:2px}
+.row .when{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;flex-shrink:0}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.skillbox{padding:22px;border-radius:16px}
+.skillbox h4{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 14px;font-weight:400;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-size:12.5px;padding:5px 12px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid var(--stroke);color:var(--muted);
+}
+
+/* contact */
+.contact{text-align:center;padding:52px 30px;border-radius:22px}
+.contact h2{margin-bottom:26px}
+footer{
+  padding:30px 0 44px;text-align:center;position:relative;z-index:2;
+  font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.08em;
+}
+
+/* project detail */
+#view-project{display:none}
+body.route-project #view-home{display:none}
+body.route-project #view-project{display:block}
+
+.detail{padding:150px 0 100px}
+.back{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:36px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);transition:color .25s var(--ease),gap .25s var(--ease);
+}
+.back:hover{color:var(--text);gap:13px}
+.detail h1{font-size:clamp(2rem,5vw,3.3rem);margin-bottom:14px}
+.detail-meta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:30px;
+}
+.detail-meta b{color:var(--accent);font-weight:400}
+.detail .summary{color:var(--muted);font-size:17px;max-width:66ch;margin:0}
+.tagrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:26px}
+
+.panels{display:grid;grid-template-columns:1.45fr 1fr;gap:16px;margin-top:48px;align-items:start}
+.panel{padding:28px;border-radius:20px}
+.panel h4{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 18px;font-weight:400;
+}
+.panel ul{margin:0;padding:0;list-style:none}
+.panel li{
+  position:relative;padding-left:20px;margin-bottom:14px;
+  color:var(--muted);font-size:14.5px;line-height:1.6;
+}
+.panel li::before{
+  content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;
+  border:1px solid rgba(166,198,220,.55);background:rgba(166,198,220,.12);
+}
+.panel li:last-child{margin-bottom:0}
+.panel li b{color:var(--text);font-weight:600}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:48px}
+.shot{border-radius:16px;overflow:hidden;border:1px solid var(--stroke);background:var(--glass);margin:0}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:zoom-in;transition:opacity .3s var(--ease)}
+.shot:hover img{opacity:.88}
+.shot .ph{
+  aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.018) 0 12px,transparent 12px 24px);
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+}
+
+/* lightbox */
+body.lb-open{overflow:hidden}
+#lightbox{
+  position:fixed;inset:0;z-index:100;display:none;
+  align-items:center;justify-content:center;padding:40px;
+  background:rgba(6,8,10,.86);
+  backdrop-filter:blur(14px) saturate(120%);
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  opacity:0;transition:opacity .3s var(--ease);
+}
+#lightbox.open{display:flex}
+#lightbox.show{opacity:1}
+#lightbox img{
+  max-width:min(1100px,92vw);max-height:86vh;width:auto;
+  border-radius:18px;border:1px solid var(--stroke-2);
+  box-shadow:0 40px 90px -40px #000;
+  transform:scale(.965);transition:transform .35s var(--ease);
+}
+#lightbox.show img{transform:scale(1)}
+#lightbox-close{
+  position:fixed;top:22px;right:22px;z-index:101;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  transition:background .25s var(--ease),transform .25s var(--ease);
+}
+#lightbox-close:hover{background:var(--glass-2);transform:scale(1.06)}
+
+/* reveal */
+.rise{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rise.in{opacity:1;transform:none}
+
+@media (max-width:820px){
+  .panels{grid-template-columns:1fr}
+  .section{padding:84px 0}
+  .detail{padding:120px 0 80px}
+}
+@media (max-width:600px){
+  .nav{width:calc(100% - 24px);overflow-x:auto;border-radius:16px;justify-content:flex-start}
+  .nav::-webkit-scrollbar{display:none}
+  .avatar{width:108px;height:108px}
+  .btn{flex:1 1 auto;justify-content:center}
+  .row{flex-direction:column;gap:6px}
+  #lightbox{padding:20px}
+  #lightbox-close{top:14px;right:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="board" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <a href="#top">IS</a>
+  <a href="#work">Portfolio</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+<div id="view-home">
+
+  <header class="hero" id="top">
+    <div class="avatar">
+      <img id="portrait" src="assets/profile.jpg" alt="Ibrahim Shekhibrahim" />
+    </div>
+    <h1>Ibrahim<br>Shekhibrahim</h1>
+    <p class="role">Electrical Engineering &middot; AI Systems</p>
+    <p class="school">Western University &middot; B.E.Sc. 2028</p>
+
+    <div class="actions">
+      <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Resume
+      </a>
+      <a class="btn btn--icon" href="https://www.linkedin.com/in/ibrahim-shekhibrahim" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C20.4 8.75 21 11.1 21 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg>
+      </a>
+      <a class="btn btn--icon" href="mailto:ishekhib@uwo.ca" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <h2 class="rise">Portfolio</h2>
+      <div class="grid" id="project-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <h2 class="rise">Experience</h2>
+      <div class="rows rise" id="experience-rows"></div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <h2 class="rise">Skills</h2>
+      <div class="skills" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="glass contact rise">
+        <h2 style="margin-bottom:24px">Open to Summer 2026 internships</h2>
+        <div class="actions">
+          <a class="btn" href="mailto:ishekhib@uwo.ca">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/ibrahim-shekhibrahim" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div id="view-project">
+  <article class="detail"><div class="wrap" id="detail-body"></div></article>
+</div>
+</main>
+
+<footer>Ibrahim Shekhibrahim &middot; London, Ontario</footer>
+
+<div id="lightbox" aria-hidden="true">
+  <button id="lightbox-close" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+/* =========================================================
+   CONTENT — everything you edit lives here
+   ========================================================= */
+
+const PROJECTS = [
+  {
+    id:'rov',
+    title:'Shallow-Water ROV',
+    meta:['Systems Integration','2025','1st place at WEC'],
+    summary:'Given an RC car and a fixed number of hours, my team rebuilt it into a shallow-water ROV that could actually be driven underwater. Sealing, buoyancy, thrust, and the electronics all had to change together. We took first in the Re-Engineering category and were selected to represent Western at the Ontario Engineering Competition.',
+    tags:['Altium Designer','SolidWorks','Waterproofing','Mechanical Design','Prototyping'],
+    did:[
+      '<b>Converted a land RC platform into an underwater vehicle</b>, redesigning the chassis for waterproofing, pressure tolerance, and real maneuverability.',
+      '<b>Moved between Altium Designer and SolidWorks</b> continuously — routing decisions changed the enclosure, and the enclosure fed back into the board.',
+      '<b>Worked across a multidisciplinary team</b>, iterating between electrical and mechanical subsystems until they became one system.',
+      'Placed <b>1st in the Re-Engineering category</b> and was <b>selected to represent Western University</b> at the OEC.'
+    ],
+    skills:[
+      'Making design tradeoffs fast, under a hard deadline, with incomplete information.',
+      'How mechanical constraints quietly dictate electrical decisions, and the reverse.',
+      'Sealing and pressure considerations for low-depth submersible electronics.',
+      'Presenting a design to judges who did not watch you build it.'
+    ],
+    images:[
+      {src:'assets/rov-1.jpg',caption:'Finished ROV before the water test'},
+      {src:'assets/rov-2.jpg',caption:'Sealed electronics bay'},
+      {src:'assets/rov-3.jpg',caption:'Team at WEC'}
+    ]
+  },
+  {
+    id:'doorbell',
+    title:'AI Smart Home Doorbell',
+    meta:['Hardware','2026','In progress'],
+    summary:'A ground-up hardware project: designing the board, laying it out in Altium, assembling it by hand, and writing embedded logic that runs person detection locally instead of sending every frame to a server.',
+    tags:['Altium Designer','PCB Layout','Embedded Systems','Computer Vision','Soldering'],
+    did:[
+      '<b>Designing the full schematic and PCB layout in Altium Designer</b> around an embedded processor with a camera interface and power management.',
+      '<b>Implementing AI-based person detection</b> so the doorbell tells a person apart from a passing car or a moving branch.',
+      '<b>Preparing hardware assembly and bring-up</b> — hand soldering, rail and continuity checks, staged bench testing before firmware goes on.',
+      'Writing the <b>embedded software</b> that ties detection, notification, and the doorbell function together.'
+    ],
+    skills:[
+      'Full-cycle hardware ownership, from idea to schematic to a physical board.',
+      'Power budgeting and part selection for an always-on embedded device.',
+      'Running a model on constrained hardware instead of assuming a cloud connection.',
+      'Debugging a board you designed yourself, where every mistake is your own.'
+    ],
+    images:[
+      {src:'assets/doorbell-1.jpg',caption:'Altium schematic'},
+      {src:'assets/doorbell-2.jpg',caption:'PCB layout'},
+      {src:'assets/doorbell-3.jpg',caption:'Bench bring-up'}
+    ]
+  },
+  {
+    id:'sequence-detector',
+    title:'FPGA Sequence Detector',
+    meta:['Digital Logic','2025','Course project'],
+    summary:'A Moore state machine that recognizes a 4-bit input sequence, built entirely at the schematic level rather than in HDL. Verified in simulation, then on real hardware, then stress tested to find where it breaks.',
+    tags:['Quartus Prime','FPGA','Moore Machine','Waveform Simulation','State Tables'],
+    did:[
+      '<b>Developed a Moore state machine</b> that detects a 4-bit input sequence and drives an output high or low accordingly.',
+      '<b>Validated functionality in Quartus</b> through waveform simulation, then confirmed the same behaviour on an FPGA board.',
+      '<b>Conducted stress testing</b> across varying input and timing conditions to confirm reliability outside the happy path.',
+      '<b>Documented the full design</b> — schematics, state tables, and cost analysis — in a concise report.'
+    ],
+    skills:[
+      'State machine design from a specification, on paper before any tool opens.',
+      'Reading waveforms to find the exact cycle where behaviour diverges.',
+      'The gap between "simulates correctly" and "works on hardware".',
+      'Writing documentation another engineer could build from.'
+    ],
+    images:[
+      {src:'assets/seq-1.jpg',caption:'Schematic capture in Quartus'},
+      {src:'assets/seq-2.jpg',caption:'Waveform simulation'},
+      {src:'assets/seq-3.jpg',caption:'FPGA board running the detector'}
+    ]
+  },
+  {
+    id:'bldc',
+    title:'Brushless DC Motor',
+    meta:['Electric Machines','2026','Course project'],
+    summary:'Rather than buying a motor and characterizing it, we defined the specification ourselves, modelled the rotor and stator in CAD, wound and assembled it, then spun it up with an ESC to see whether the theory held.',
+    tags:['Electric Machines','Power Theory','SolidWorks','CAD','ESC'],
+    did:[
+      '<b>Applied electric machine principles and power theory</b> to define motor specifications: torque, speed, voltage, and output power.',
+      '<b>Developed CAD models of the rotor and stator</b> in SolidWorks, sized around magnets and windings we could actually source.',
+      '<b>Assembled the motor by hand</b> using permanent magnets, copper windings, and bearings.',
+      '<b>Tested operation with an electronic speed controller</b> to evaluate real performance against the calculated specification.'
+    ],
+    skills:[
+      'Connecting electromagnetic theory to a physical object you can hold and spin.',
+      'CAD modelling with manufacturing and assembly tolerance in mind.',
+      'Winding, balancing, and the mechanical patience motor assembly demands.',
+      'Interpreting the gap between predicted and measured performance.'
+    ],
+    images:[
+      {src:'assets/bldc-1.jpg',caption:'Rotor and stator CAD'},
+      {src:'assets/bldc-2.jpg',caption:'Winding the stator'},
+      {src:'assets/bldc-3.jpg',caption:'First spin-up on the ESC'}
+    ]
+  },
+  {
+    id:'pcb',
+    title:'Power Electronics PCB',
+    meta:['Hardware','2025','Course project'],
+    summary:'The whole loop in one project: simulate the circuit until the numbers are right, lay it out, get it made, populate it by hand, then prove it works live with no second attempt.',
+    tags:['Eagle CAD','Micro-Cap','Power Electronics','Soldering','Lab Testing'],
+    did:[
+      '<b>Designed a printed circuit board from scratch</b> for a power electronics circuit, starting from requirements rather than a reference design.',
+      '<b>Simulated and validated the circuit in Micro-Cap</b> before committing to schematic and layout in Eagle CAD.',
+      '<b>Soldered and assembled the populated board</b>, following proper safety practice and a defined test procedure.',
+      '<b>Verified functionality in a live demonstration</b> of a fully working prototype that met specification.'
+    ],
+    skills:[
+      'Trusting simulation enough to commit to fabrication, and knowing where it lies.',
+      'Layout decisions that matter in power circuits: trace width, return paths, thermal relief.',
+      'Hand assembly and rework on a board with no spares.',
+      'Demonstrating hardware live, which is a different skill from making it work.'
+    ],
+    images:[
+      {src:'assets/pcb-1.jpg',caption:'Micro-Cap simulation'},
+      {src:'assets/pcb-2.jpg',caption:'Eagle layout'},
+      {src:'assets/pcb-3.jpg',caption:'Assembled board'}
+    ]
+  },
+  {
+    id:'musicly',
+    title:'Music.ly Web App',
+    meta:['Full-Stack','2026','Course project'],
+    summary:'A browser interface backed by a real MySQL schema, with five working operations spanning inserts, operational data flows, and multi-table joins. The most useful part was catching a subtly wrong AI-generated query by reasoning through the schema myself.',
+    tags:['Node.js','Express','MySQL','JavaScript','HTML/CSS'],
+    did:[
+      '<b>Built a full-stack web application</b> connecting a MySQL database to a browser interface with Node.js and Express, implementing five functionalities including INSERT operations and complex multi-table JOIN queries.',
+      '<b>Performed analysis and QA on every data operation</b>, validating foreign key constraints, referential integrity, and query accuracy.',
+      '<b>Found and corrected an AI-generated JOIN error</b> that silently produced duplicate records, by reasoning through the schema by hand.',
+      '<b>Integrated GitHub Copilot and ChatGPT into the workflow</b> while checking every suggestion against the actual schema.'
+    ],
+    skills:[
+      'Relational schema design and what referential integrity actually protects you from.',
+      'Debugging joins where the result looks plausible but is wrong.',
+      'Using AI tools as a fast draft, not as an authority.',
+      'Wiring a database to a front end end-to-end.'
+    ],
+    images:[
+      {src:'assets/musicly-1.jpg',caption:'Application interface'},
+      {src:'assets/musicly-2.jpg',caption:'Database schema'},
+      {src:'assets/musicly-3.jpg',caption:'Query results view'}
+    ]
+  },
+  {
+    id:'petmatch',
+    title:'AI Pet Matching System',
+    meta:['Software','2024','Team of 4'],
+    summary:'Most adoption sites let you filter by breed. We built a prototype that matched on lifestyle and living situation instead, then extended it with a sitter feature so the platform stayed useful after the adoption.',
+    tags:['Python','API Integration','Agile','GitHub','Prototyping'],
+    did:[
+      '<b>Led a team of four</b> to design and prototype an AI-powered pet adoption platform in Python, matching pets to lifestyle and preferences.',
+      '<b>Integrated a pet sitter matching feature</b> connecting users with nearby sitters, extending the product past the adoption itself.',
+      '<b>Applied software engineering principles and agile workflows</b> to hit every specification with the full feature set delivered.',
+      '<b>Presented the final prototype to peers and faculty</b> as a solution that was both technically feasible and functional.'
+    ],
+    skills:[
+      'Splitting work across four people and keeping the pieces compatible.',
+      'API integration and handling data that arrives incomplete.',
+      'Scoping a feature set to what can genuinely ship by the deadline.',
+      'Presenting technical work to a mixed technical and non-technical room.'
+    ],
+    images:[
+      {src:'assets/pet-1.jpg',caption:'Matching interface'},
+      {src:'assets/pet-2.jpg',caption:'Sitter feature'},
+      {src:'assets/pet-3.jpg',caption:'Final presentation'}
+    ]
+  }
+];
+
+const EXPERIENCE = [
+  {role:'Club President', org:'Western Kurdish Students Association', when:'Dec 2024 — Present'},
+  {role:'Sales Consultant', org:'Bell Canada', when:'Apr — Oct 2025'},
+  {role:'Electrical Lead Assistant', org:'Western Engineering Rocketry Club', when:'Sep 2024 — May 2025'},
+  {role:'Student Ambassador', org:'Western Engineering', when:'Sep 2024 — May 2025'},
+  {role:'First &amp; Second Year Representative', org:'Undergraduate Engineering Society', when:'Sep 2023 — May 2024'},
+  {role:'FIRST Robotics Club Captain', org:'Westminster Secondary School', when:'Sep 2022 — Jun 2023'}
+];
+
+const SKILLS = [
+  {title:'Electrical design', items:['Altium Designer','Quartus Prime','Eagle CAD','Micro-Cap','SolidWorks','Arduino']},
+  {title:'Hardware', items:['Soldering','Wiring','Breadboard circuits','Multimeters','Bench testing','PCB assembly']},
+  {title:'Programming', items:['Python','Java','C++','MATLAB','JavaScript','SQL']},
+  {title:'Tools', items:['GitHub','Node.js','Express','MySQL','Google Colab','Agile']}
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const $ = s => document.querySelector(s);
+
+const portrait = $('#portrait');
+portrait.addEventListener('error', () => { portrait.outerHTML = '<div class="ph">IS</div>'; });
+
+$('#project-grid').innerHTML = PROJECTS.map(p =>
+  `<a class="card glass rise" href="#/p/${p.id}">${p.title}</a>`).join('');
+
+$('#experience-rows').innerHTML = EXPERIENCE.map(e => `
+  <div class="row">
+    <div><div class="role">${e.role}</div><div class="org">${e.org}</div></div>
+    <div class="when">${e.when}</div>
+  </div>`).join('');
+
+$('#skills-grid').innerHTML = SKILLS.map(s => `
+  <div class="skillbox glass rise">
+    <h4>${s.title}</h4>
+    <div class="chips">${s.items.map(i=>`<span class="chip">${i}</span>`).join('')}</div>
+  </div>`).join('');
+
+function renderProject(p){
+  $('#detail-body').innerHTML = `
+    <a class="back" href="#work">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All projects
+    </a>
+    <h1>${p.title}</h1>
+    <div class="detail-meta">
+      <span>${p.meta[0]}</span><span>${p.meta[1]}</span><b>${p.meta[2]}</b>
+    </div>
+    <p class="summary">${p.summary}</p>
+    <div class="tagrow">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+
+    <div class="panels">
+      <div class="glass panel"><h4>What I did</h4>
+        <ul>${p.did.map(d=>`<li>${d}</li>`).join('')}</ul>
+      </div>
+      <div class="glass panel"><h4>Skills gained</h4>
+        <ul>${p.skills.map(s=>`<li>${s}</li>`).join('')}</ul>
+      </div>
+    </div>
+
+    <div class="gallery">${p.images.map(img=>`
+      <figure class="shot">
+        <img src="${img.src}" alt="${img.caption}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${img.src}</div>'">
+      </figure>`).join('')}</div>`;
+}
+
+/* =========================================================
+   ROUTER
+   ========================================================= */
+function route(){
+  const m = location.hash.match(/^#\/p\/(.+)$/);
+  if (m){
+    const p = PROJECTS.find(x => x.id === m[1]);
+    if (p){
+      document.body.classList.add('route-project');
+      renderProject(p);
+      window.scrollTo(0,0);
+      document.title = p.title + ' — Ibrahim Shekhibrahim';
+      return;
+    }
+  }
+  const back = document.body.classList.contains('route-project');
+  document.body.classList.remove('route-project');
+  document.title = 'Ibrahim Shekhibrahim';
+  if (back){
+    const t = document.querySelector(location.hash || '#top');
+    if (t) t.scrollIntoView();
+  }
+  observe();
+}
+window.addEventListener('hashchange', route);
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+
+function observe(){
+  document.querySelectorAll('.rise:not(.in)').forEach((el,i) => {
+    el.style.transitionDelay = (i % 5) * 60 + 'ms';
+    io.observe(el);
+  });
+}
+
+/* =========================================================
+   BACKGROUND — PCB traces with current pulses
+   ========================================================= */
+(function board(){
+  const cv = document.getElementById('board');
+  const ctx = cv.getContext('2d');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,dpr=1,traces=[],pulses=[],still=null,raf=null;
+  const rand=(a,b)=>a+Math.random()*(b-a);
+
+  function makeTrace(){
+    const pts=[{x:rand(-60,W+60),y:rand(-60,H+60)}];
+    let dir=Math.floor(Math.random()*8)*Math.PI/4;
+    const segs=3+Math.floor(Math.random()*4);
+    for(let i=0;i<segs;i++){
+      if(i) dir += (Math.random()<.5?1:-1)*Math.PI/4;
+      const len=rand(70,210), last=pts[pts.length-1];
+      pts.push({x:last.x+Math.cos(dir)*len, y:last.y+Math.sin(dir)*len});
+    }
+    const cum=[0];
+    for(let i=1;i<pts.length;i++) cum.push(cum[i-1]+Math.hypot(pts[i].x-pts[i-1].x,pts[i].y-pts[i-1].y));
+    return {pts,cum,total:cum[cum.length-1]};
+  }
+
+  function pointAt(t,d){
+    if(d<=0) return t.pts[0];
+    if(d>=t.total) return t.pts[t.pts.length-1];
+    let i=1; while(t.cum[i]<d) i++;
+    const s=(d-t.cum[i-1])/(t.cum[i]-t.cum[i-1]);
+    return {x:t.pts[i-1].x+(t.pts[i].x-t.pts[i-1].x)*s, y:t.pts[i-1].y+(t.pts[i].y-t.pts[i-1].y)*s};
+  }
+
+  function bake(){
+    still=document.createElement('canvas');
+    still.width=cv.width; still.height=cv.height;
+    const c=still.getContext('2d');
+    c.scale(dpr,dpr); c.lineJoin='round'; c.lineCap='round';
+    traces.forEach(t=>{
+      c.strokeStyle='rgba(255,255,255,.075)'; c.lineWidth=1.1;
+      c.beginPath(); c.moveTo(t.pts[0].x,t.pts[0].y);
+      for(let i=1;i<t.pts.length;i++) c.lineTo(t.pts[i].x,t.pts[i].y);
+      c.stroke();
+      t.pts.forEach((p,i)=>{
+        if(i===0||i===t.pts.length-1||Math.random()<.35){
+          c.beginPath(); c.arc(p.x,p.y,2.2,0,Math.PI*2);
+          c.strokeStyle='rgba(255,255,255,.14)'; c.lineWidth=1; c.stroke();
+        }
+      });
+    });
+  }
+
+  const seed=()=>({t:traces[Math.floor(Math.random()*traces.length)],d:-rand(0,600),speed:rand(.9,2.2),tail:rand(60,150)});
+
+  function build(){
+    W=innerWidth; H=innerHeight; dpr=Math.min(devicePixelRatio||1,2);
+    cv.width=W*dpr; cv.height=H*dpr;
+    cv.style.width=W+'px'; cv.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    traces=Array.from({length:Math.max(12,Math.round(W*H/36000))},makeTrace);
+    bake();
+    pulses=Array.from({length:W<700?5:10},seed);
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(still,0,0,W,H);
+    ctx.lineCap='round';
+    pulses.forEach(p=>{
+      p.d+=p.speed;
+      if(p.d-p.tail>p.t.total) Object.assign(p,seed());
+      if(p.d<0) return;
+      for(let k=0;k<p.tail;k+=6){
+        const d0=p.d-k, d1=p.d-k-6;
+        if(d1<0||d0>p.t.total) continue;
+        const a=1-k/p.tail, A=pointAt(p.t,d0), B=pointAt(p.t,d1);
+        ctx.strokeStyle=`rgba(190,222,242,${(a*a*.5).toFixed(3)})`;
+        ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+      }
+      const h=pointAt(p.t,Math.min(p.d,p.t.total));
+      ctx.save(); ctx.shadowColor='rgba(166,198,220,.9)'; ctx.shadowBlur=10;
+      ctx.fillStyle='rgba(224,240,252,.95)';
+      ctx.beginPath(); ctx.arc(h.x,h.y,1.9,0,Math.PI*2); ctx.fill(); ctx.restore();
+    });
+    raf=requestAnimationFrame(frame);
+  }
+
+  function start(){
+    cancelAnimationFrame(raf); build();
+    if(reduced){ ctx.drawImage(still,0,0,W,H); return; }
+    frame();
+  }
+  let t; addEventListener('resize',()=>{clearTimeout(t); t=setTimeout(start,220);});
+  document.addEventListener('visibilitychange',()=>{ document.hidden?cancelAnimationFrame(raf):(!reduced&&frame()); });
+  start();
+})();
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+(function lightbox(){
+  const box=$('#lightbox'), pic=$('#lightbox-img');
+  function open(src,alt){
+    pic.src=src; pic.alt=alt||'';
+    box.classList.add('open');
+    box.setAttribute('aria-hidden','false');
+    document.body.classList.add('lb-open');
+    requestAnimationFrame(()=>box.classList.add('show'));
+  }
+  function hide(){
+    box.classList.remove('show');
+    box.setAttribute('aria-hidden','true');
+    document.body.classList.remove('lb-open');
+    setTimeout(()=>{ box.classList.remove('open'); pic.src=''; },300);
+  }
+  document.addEventListener('click', e=>{
+    const shot = e.target.closest('.shot img');
+    if(shot){ open(shot.src, shot.alt); return; }
+    if(e.target===box || e.target.closest('#lightbox-close')) hide();
+  });
+  addEventListener('keydown', e=>{
+    if(e.key==='Escape' && box.classList.contains('open')) hide();
+  });
+})();
+
+route();
+observe();
+</script>
+</body>
+</html>
